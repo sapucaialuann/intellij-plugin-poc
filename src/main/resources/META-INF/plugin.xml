@@ -1,15 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.sapucaialuann.intellijpluginpoc</id>
-    <name>intellij-plugin-poc</name>
+    <name>Gpt-Code-Enhancement</name>
     <vendor>sapucaialuann</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
+    <actions>
+        <action id="GptCodeEnhancement" class="com.github.sapucaialuann.intellijpluginpoc.actions.GptCodeEnhancementAction"
+                text="Enhance with GPT" description="Send prompt to GPT">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.sapucaialuann.intellijpluginpoc.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.sapucaialuann.intellijpluginpoc.startup.MyProjectActivity" />
     </extensions>
 </idea-plugin>

@@ -1,12 +1,12 @@
 package com.github.sapucaialuann.intellijpluginpoc
 
+import com.github.sapucaialuann.intellijpluginpoc.services.GPTService
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.components.service
 import com.intellij.psi.xml.XmlFile
 import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
-import com.github.sapucaialuann.intellijpluginpoc.services.MyProjectService
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {
@@ -30,9 +30,10 @@ class MyPluginTest : BasePlatformTestCase() {
     }
 
     fun testProjectService() {
-        val projectService = project.service<MyProjectService>()
+        val projectService = project.service<GPTService>()
 
-        assertNotSame(projectService.getRandomNumber(), projectService.getRandomNumber())
+        assertNotSame(projectService.callGpt("test"),
+            projectService.callGpt("this is a test, just print the word test so I can check the connection"))
     }
 
     override fun getTestDataPath() = "src/test/testData/rename"
